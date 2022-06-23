@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>marelso ponto</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="Style/Styles.css">
+    <meta charset="utf-8">
+    <script type="text/javascript">
+        sessionStorage.setItem("IsDarkTheme", "true");
+
+
+        function GoTo(pagina) {
+            window.location.href = pagina;
+        }
+
+        function Alterar() {
+            switch(document.getElementById("idJornada").checked) {
+                case true:
+                    document.getElementById("idSwitch0").checked = true;
+                    document.getElementById("idSwitch1").checked = true;
+                    document.getElementById("idSwitch2").checked = true;
+                    document.getElementById("idSwitch3").checked = true;
+                    document.getElementById("idSwitch4").checked = true;
+                    
+                    break;
+                case false:
+                    document.getElementById("idSwitch0").checked = false;
+                    document.getElementById("idSwitch1").checked = false;
+                    document.getElementById("idSwitch2").checked = false;
+                    document.getElementById("idSwitch3").checked = false;
+                    document.getElementById("idSwitch4").checked = false;
+                    break;
+            }
+        }
+        function importD() {
+            let input = document.createElement('input');
+            input.type = 'file';
+            input.onchange = _this => {
+                    let files =   Array.from(input.files);
+                    console.log(files);
+                };
+            input.click();
+        }
+        function ThemeChange() {            
+            let thema = '';
+            let darkTheme = ConvertToBoolean(sessionStorage.getItem("IsDarkTheme"));
+            darkTheme = !(darkTheme);
+
+            if(darkTheme) {
+                document.body.className = 'lightTheme';
+                document.getElementById('btnTheme').textContent = 'Dark Theme';
+            }
+            else {
+                document.body.className = 'darkTheme';
+                document.getElementById('btnTheme').textContent = 'Light Theme';
+            }
+
+            sessionStorage.setItem("IsDarkTheme", darkTheme);
+        }      
+        function Logoff() {
+            window.location.href = "../index.html";
+        }
+        function ConvertToBoolean(texto) {
+            switch(texto) {
+                case "true":
+                case "yes":
+                case "1":
+                    return true;
+                case "false":
+                case "no":
+                case "0":
+                case null:
+                    return false;
+                default:
+                    return Boolean(texto);
+            }
+        }
+    </script>
+  </head>
+  <body class="lightTheme">
+    <ul style="margin-bottom: 1%;">
+        <li ><a href="dashboard.html"><strong>marelsoPonto</strong></a></li>
+        <li style="float:right"><a href="dados_pessoais.html"><strong>Meus dados</strong></a></li>
+    </ul>
+    
+    <label style="margin-left: 20vw; font-size: 30px; width: 40vw;"><strong>Abrir nova solicitação</strong></label>
+    <div class="block" style="margin-left: 20vw; height: 60%; width: 40vw;">
+        <br>   
+        <label class="label" style="width: 50px; font-size: 25px;"><strong>Selecione o tipo de ocorrência</strong></label>   <br>    
+        <select class="custom-select" style="margin-left: 5%; display:inline">
+            <option value="0">🗓️ Evento particular</option>
+            <option value="1">🗓️ Solicitação de Abono</option>
+            <option value="2">🗓️ Solicitação de Férias</option>
+            <option value="3">🗓️ Dispensa médica</option>
+        </select><br><br>
+        
+        <label class="label" style="width: 50px; font-size: 20px;"><strong>Jornada:</strong></label><br><br>
+        <label class="label" style="width: 50px; font-size: 18px;">Insira o horário de inicio:</label>   <br>
+        <input class="FormText" type="text" id="encerramento" name="encerramento" placeholder="🕐 00:00" style="margin-left: 5%; font-size: 16px; width: 120px;"><br>
+    
+        <label class="label" style="width: 50px; font-size: 18px;">Insira o horário de encerramento:</label>   <br>
+        <input class="FormText" type="text" id="encerramento" name="encerramento" placeholder="🕐 00:00" style="margin-left: 5%; font-size: 16px; width: 120px;"><br> <br>
+    
+        <label class="label" style="width: 50px; font-size: 20px;" aria-required="true">Motivo da solicitação:</label>   <br>
+        <textarea id="text"rows="4" cols="50" placeholder="Descreva aqui sua solicitação..." required></textarea> <br>
+        
+        <label class="label" style="width: 50px; font-size: 20px;" aria-required="true">Gostaria de anexar alguma evidência?</label>   <br>
+        
+        <div style="cursor: pointer;width: 80%;height: 60px;margin-top: 1%;margin-left: 5%; margin-bottom: 5%; text-align: center;padding-top: 20px;border: 1px solid black;box-shadow: 1px 1px 1px 1px grey;background-color: #e0e0e0;" onclick="importD()">
+            <label for="inputTag" style="margin-left: 5%; padding-top:1%;">
+                📂Selecione sua evidência
+                <input type="file" accept="image/png, image/jpg, image/gif, image/jpeg" style="display: none;"/>
+              </label>
+        </div>
+        <input class="submit" onclick="GoTo('registros_particulares.html')" style="background-color: white; border:1px solid black; color: black; width: 200px; margin-left:calc(50% - 100px);" type="submit" value="Enviar solicitação">
+   
+    </div>
+
+    <button id="btnLogoff" class="btnLogoff rounded" onclick="Logoff()"> LogOff </button>
+    <button id="btnTheme" class="btnTheme rounded" onclick="ThemeChange()"> Dark Theme </button>
+  </body>
+</html>

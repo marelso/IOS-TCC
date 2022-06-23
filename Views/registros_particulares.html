@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>marelso ponto</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="Style/Styles.css">
+    <meta charset="utf-8">
+    <script type="text/javascript">
+        sessionStorage.setItem("IsDarkTheme", "true");
+
+        
+        function GoTo(pagina) {
+            window.location.href = pagina;
+        }
+
+        function ThemeChange() {            
+            let thema = '';
+            let darkTheme = ConvertToBoolean(sessionStorage.getItem("IsDarkTheme"));
+            darkTheme = !(darkTheme);
+
+            if(darkTheme) {
+                document.body.className = 'lightTheme';
+                document.getElementById('btnTheme').textContent = 'Dark Theme';
+            }
+            else {
+                document.body.className = 'darkTheme';
+                document.getElementById('btnTheme').textContent = 'Light Theme';
+            }
+
+            sessionStorage.setItem("IsDarkTheme", darkTheme);
+        }        
+        function Logoff() {
+            window.location.href = "../index.html";
+        }
+        function ConvertToBoolean(texto) {
+            switch(texto) {
+                case "true":
+                case "yes":
+                case "1":
+                    return true;
+                case "false":
+                case "no":
+                case "0":
+                case null:
+                    return false;
+                default:
+                    return Boolean(texto);
+            }
+        }
+    </script>
+  </head>
+  <body class="lightTheme">
+    <ul style="margin-bottom: 1%;">
+        <li ><a href="dashboard.html"><strong>marelsoPonto</strong></a></li>
+        <li style="float:right"><a href="dados_pessoais.html"><strong>Meus dados</strong></a></li>
+    </ul>
+    
+    <label style="margin-left: 10vw; font-size: 30px;"><strong>Registros solicitados</strong></label>
+    <div class="block" style="height: 120px">
+        <br>   
+        <br>   
+        <label class="label" style="width: 50px;"><strong>Solicitações pendentes</strong></label>
+        <div>
+            <h2 class="label" style="margin-right:70%;display:inline">01</h2>
+            <input class="submit" onclick="GoTo('abrir_solicitacao.html')" style="text-align: center; background-color: white; border:1px solid black; color: black; width: 255px;" type="submit" value="Solicitar registro">
+            <br>
+            <br>
+        </div>        
+    </div>
+        
+    <input class="FormText" type="text" id="login" name="login" placeholder="🔍 Pesquisar por solicitação" style="margin-left: 10vw; font-size: 20px; width: 80%;"><br>
+    
+    <div class="grid-container" style="margin-left: 10vw; margin-top:2%;width: 80%; height: 72%">
+        <div class="Headder">#</div>
+        <div class="Headder">Solicitação</div>
+        <div class="Headder">Concedente</div>  
+        <div class="Headder">Data</div>
+        <div class="Headder">Estado</div>
+        
+        <div class="item1">01</div>
+        <div class="item1">Solicitação de férias</div>
+        <div class="item1">Não atendido</div>
+        <div class="item1">21/06/2022</div>  
+        <div class="item1">Pendente</div>
+        
+        <div class="item2">02</div>
+        <div class="item2">Solicitação de dispensa médica</div>
+        <div class="item2">Gerente de produtos</div>  
+        <div class="item2">15/06/2022</div>
+        <div class="item2">Respondido</div>  
+        
+        <div class="item3">03</div>
+        <div class="item3">Solicitação de dispensa médica</div>
+        <div class="item3">Gerente de produtos</div>  
+        <div class="item3">10/06/2022</div>
+        <div class="item3">Respondido</div>  
+    </div>
+
+
+    <button id="btnLogoff" class="btnLogoff rounded" onclick="Logoff()"> LogOff </button>
+    <button id="btnTheme" class="btnTheme rounded" onclick="ThemeChange()"> Dark Theme </button>
+  </body>
+</html>

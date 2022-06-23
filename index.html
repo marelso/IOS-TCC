@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>marelso ponto</title>
+    <link rel="stylesheet" href="Views/Style/Styles.css">
+    <meta charset="utf-8">
+    <script type="text/javascript">
+        sessionStorage.setItem("IsDarkTheme", "true");
+        function Login() {
+            var login = document.getElementById("login").value
+            var senha = document.getElementById("password").value
+            if(login == "" || senha == "") {                
+                alert('Você deve inserir todos os seus dados de acesso.')
+                return;
+            }
+
+            var data = {
+                login : login,
+                senha : senha
+            };
+
+            switch(document.getElementById("idSwitch").checked)
+            {
+                case true:
+                    sessionStorage.setItem("IDFuncionario", 1);
+                    console.log(sessionStorage.getItem("IDFuncionario"));
+                    window.location.href = "Views/dashboard_gestor.html";
+                    break;
+                case false:
+                    sessionStorage.setItem("IDFuncionario", 1);
+                    window.location.href = "Views/dashboard.html";
+                    break;
+            }
+
+            
+     //      var url = new URL("http://localhost:5124/api/Login");
+     //      for (let k in data) {
+     //          url.searchParams.append(k, data[k]);
+     //      }
+
+     //      fetch(url)
+     //      .then((result) => {
+     //          console.log(result);
+     //          if (result.status != 200) { throw new Error("Bad Server Response"); }
+     //          return result.text();})
+     //      .then((response) => { console.log(response);})
+     //      .catch((error) => { console.log(error); });
+
+     //      var proxyUrl = 'ttp://localhost:5124/',
+     //          targetUrl = new URL("http://localhost:5124/api/Login");
+     //      fetch(proxyUrl + targetUrl)
+     //      .then(blob => blob.json())
+     //      .then((result) => {
+     //          console.log(result);
+     //          if (result.status != 200) { throw new Error("Bad Server Response"); }
+     //          return result.text();})
+     //      .catch(e => { console.log(e); return e; });
+        }
+        function Alterar() {
+            switch(document.getElementById("idSwitch").checked) {
+                case true:
+                    document.getElementById("idFuncao").innerHTML = "Logando como: Gerente";
+                    break;
+                case false:
+                    document.getElementById("idFuncao").innerHTML = "Logando como: Funcionário";
+                    break;
+            }
+        }
+        function ThemeChange() {            
+            let thema = '';
+            let darkTheme = ConvertToBoolean(sessionStorage.getItem("IsDarkTheme"));            
+            console.log(darkTheme);
+
+            darkTheme = !(darkTheme);
+            console.log(darkTheme);
+
+            if(darkTheme) {
+                document.body.className = 'lightTheme';
+                document.getElementById('btnTheme').textContent = 'Dark Theme';
+            }
+            else {
+                document.body.className = 'darkTheme';
+                document.getElementById('btnTheme').textContent = 'Light Theme';
+            }
+
+            sessionStorage.setItem("IsDarkTheme", darkTheme);
+        }
+        function ConvertToBoolean(texto) {
+            switch(texto) {
+                case "true":
+                case "yes":
+                case "1":
+                    return true;
+                case "false":
+                case "no":
+                case "0":
+                case null:
+                    return false;
+                default:
+                    return Boolean(texto);
+            }
+        }
+    </script>
+  </head>
+  <body class="lightTheme">
+    <div class="container rounded horizontal vertical">
+        <h1><strong>marelsoPonto</strong></h1>
+        <h3>Acesso com sua conta agora mesmo.</h3>
+        <br>
+        <div>
+            <input class="FormText" type="text" id="login" name="login" placeholder="Login"><br>
+            <input class="FormText" type="password" id="password" name="password" placeholder="Password"><br>
+            
+            <a class="cadastro" href="default.asp" target="_blank" width="800px">Criar conta</a>
+            
+            <input class="submit" value="Entrar" onclick="Login()">
+
+        </div>
+    </div>
+
+    <label class="switch" style="margin-top: 5vh;">
+        <input id="idSwitch" onclick="Alterar()" type="checkbox">
+        <span class="slider round"></span>
+    </label>
+    <h2 id="idFuncao" style="display: inline;margin-left: 2vw;">Logando como: Funcionário</h2>
+  </body>
+</html>

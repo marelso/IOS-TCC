@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>marelso ponto</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="Style/Styles.css">
+    <meta charset="utf-8">
+    <script type="text/javascript">
+        sessionStorage.setItem("IsDarkTheme", "true");
+
+
+        function GoTo(pagina) {
+            window.location.href = pagina;
+        }
+
+        function Alterar() {
+            switch(document.getElementById("idJornada").checked) {
+                case true:
+                    document.getElementById("idSwitch0").checked = true;
+                    document.getElementById("idSwitch1").checked = true;
+                    document.getElementById("idSwitch2").checked = true;
+                    document.getElementById("idSwitch3").checked = true;
+                    document.getElementById("idSwitch4").checked = true;
+                    
+                    break;
+                case false:
+                    document.getElementById("idSwitch0").checked = false;
+                    document.getElementById("idSwitch1").checked = false;
+                    document.getElementById("idSwitch2").checked = false;
+                    document.getElementById("idSwitch3").checked = false;
+                    document.getElementById("idSwitch4").checked = false;
+                    break;
+            }
+        }
+        function ThemeChange() {            
+            let thema = '';
+            let darkTheme = ConvertToBoolean(sessionStorage.getItem("IsDarkTheme"));
+            darkTheme = !(darkTheme);
+
+            if(darkTheme) {
+                document.body.className = 'lightTheme';
+                document.getElementById('btnTheme').textContent = 'Dark Theme';
+            }
+            else {
+                document.body.className = 'darkTheme';
+                document.getElementById('btnTheme').textContent = 'Light Theme';
+            }
+
+            sessionStorage.setItem("IsDarkTheme", darkTheme);
+        }      
+        function Logoff() {
+            window.location.href = "../index.html";
+        }
+        function ConvertToBoolean(texto) {
+            switch(texto) {
+                case "true":
+                case "yes":
+                case "1":
+                    return true;
+                case "false":
+                case "no":
+                case "0":
+                case null:
+                    return false;
+                default:
+                    return Boolean(texto);
+            }
+        }
+    </script>
+  </head>
+  <body class="lightTheme">
+    <ul style="margin-bottom: 1%;">
+        <li ><a href="dashboard.html"><strong>marelsoPonto</strong></a></li>
+        <li style="float:right"><a href="dados_pessoais.html"><strong>Meus dados</strong></a></li>
+    </ul>
+    
+    <label style="margin-left: 20vw; font-size: 30px; width: 40vw;"><strong>Gerenciar funcionário</strong></label>
+    <div style="display: inline;">
+        <div class="block" style="margin-left: 10vw; height: 60%; width: 40vw;">
+            <br>   
+            <label class="label" style="width: 50px; font-size: 25px;"><strong>Marcelo Klein Sousa Junior</strong></label>        
+            <div style="font-size: 20px;">
+                <label id="Setor" class="label" style="width: 20px;  text-align: left;">Produtos</label> <label style="text-align: center;">-</label>
+                <label id="Funcao" class="label" style="width: 20px;  text-align: left;">Estagiário</label> <label style="text-align: center;">-</label>
+                <label id="CH" class="label" style="width: 20px; text-align: left;">30 horas</label> <label style="text-align: center;">-</label>
+                <br>
+                <br>
+            </div>
+            
+            <label class="label" style="width: 50px; font-size: 20px;"><strong>Jornada:</strong></label><br><br>
+            
+            <label class="switch" style=" left: 28%; bottom: 5px;">
+                <input id="idJornada" type="checkbox" onclick="Alterar()">
+                <span class="slider round"></span>
+            </label>
+            <label style="display: inline;"><h3 style="display: inline;">Liberar remoto</h3></label>
+            <br><br>
+    
+            <div style="width:100%; margin-left:calc(50% - 350px); font-size: 18px;">
+                <label class="label" style="width: 20px; text-align: left;"><strong>⚠️ Atenção:</strong> A carga semanal é de 30 horas e o intervalo mínimo é de 01 horas.</label>
+                <br>
+                <br>
+            </div>
+    
+            <div class="grid-container" style="margin-left: calc(50% - 300px); margin-top:2%;width: 600px; height: 72%">
+                <div class="Headder">Segunda</div>
+                <div class="Headder">Terça</div>
+                <div class="Headder">Quarta</div>  
+                <div class="Headder">Quinta</div>
+                <div class="Headder">Sexta</div>
+                
+                <div class="item1"><input type="text" style="width: 80px;" placeholder="08:00"></div>
+                <div class="item1"><input type="text" style="width: 80px;" placeholder="08:00"></div>
+                <div class="item1"><input type="text" style="width: 80px;" placeholder="08:00"></div>  
+                <div class="item1"><input type="text" style="width: 80px;" placeholder="08:00"></div>
+                <div class="item1"><input type="text" style="width: 80px;" placeholder="08:00"></div>
+                
+                <div class="item2"><input type="text" style="width: 80px;" placeholder="15:00"></div>
+                <div class="item2"><input type="text" style="width: 80px;" placeholder="15:00"></div>
+                <div class="item2"><input type="text" style="width: 80px;" placeholder="15:00"></div>  
+                <div class="item2"><input type="text" style="width: 80px;" placeholder="15:00"></div>
+                <div class="item2"><input type="text" style="width: 80px;" placeholder="15:00"></div>  
+                
+                <div class="item3">
+                    <label class="switch">
+                        <input id="idSwitch0" type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div class="item3">
+                    <label class="switch">
+                        <input id="idSwitch1" type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div class="item3">
+                    <label class="switch">
+                        <input id="idSwitch2" type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>  
+                <div class="item3">
+                    <label class="switch">
+                        <input id="idSwitch3" type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div class="item3">
+                    <label class="switch">
+                        <input id="idSwitch4" type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                </div>  
+                </div>
+                <br>
+                <div style="margin-left: calc(50% - 300px)">
+                    <a class="cancelar" href="lista_funcionarios.html" style="color: Black;text-decoration: none;" width="10%">Cancelar</a>
+                    <input class="submit" style="background-color: white; border:1px solid black; color: black; width: 150px; margin-left:calc(50% - 150px);" value="Ajustar jornada" onclick="GoTo('lista_funcionarios.html')">
+                </div><br>
+            </div>
+        </div>
+        <div style="position:absolute; right: 10px; top: 10vh; width: 30vw;">
+            <div class="block" style="height: 40vh">
+                <br>   
+                <br>   
+                <label class="label" style="width: 50px; font-size: 20px;"><strong>Filtros:</strong></label>
+                <div>
+                    <select class="custom-select" style="margin-left: 5%; display:inline">
+                        <option value="0">🗓️ últimos 5 dias</option>
+                        <option value="1">🗓️ últimos 7 dias</option>
+                        <option value="2">🗓️ últimos 14 dias</option>
+                        <option value="3">🗓️ últimos 30 dias</option>
+                        <option value="4">🗓️ últimos 60 dias</option>
+                        <option value="5">🗓️ últimos 90 dias</option>
+                    </select><br><br>
+                    <label class="label" style="width: 50px; font-size: 20px;"><strong>Jornada:</strong></label><br><br>
+                    
+                    <label class="switch" style=" left: 40%; bottom: 7px;">
+                        <input id="idSwitch" type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                    <label style="display: inline;"><h3 style="display: inline;">Liberar remoto</h3></label>
+                    <br><br>
+
+                    <label class="label" style="width: 50px; font-size: 25px;"><strong>Lucas Melkien Teodoro</strong></label>         
+                    <div style="font-size: 20px;">
+                        <label id="Setor" class="label" style="width: 20px;  text-align: left;">Produtos</label> <label style="text-align: center;">-</label>
+                        <label id="Funcao" class="label" style="width: 20px;  text-align: left;">Funcionário</label> <label style="text-align: center;">-</label>
+                        <label id="CH" class="label" style="width: 20px; text-align: left;">40 horas</label> <label style="text-align: center;">-</label>
+                        <br>
+                        <br>
+                    </div>
+                    <input class="submit" onclick="GoTo('lista_funcionarios.html')" style="margin-left: calc(50% - 125px);text-align: center; background-color: white; border:1px solid black; color: black; width: 255px;" type="submit" value="Mudar jornada">
+                    <br>            
+                    <br>
+                </div>        
+            </div>
+        </div>
+    </div>
+
+    <button id="btnLogoff" class="btnLogoff rounded" onclick="Logoff()"> LogOff </button>
+    <button id="btnTheme" class="btnTheme rounded" onclick="ThemeChange()"> Dark Theme </button>
+  </body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>marelso ponto</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="Style/Styles.css">
+    <meta charset="utf-8">
+    <script type="text/javascript">
+        sessionStorage.setItem("IsDarkTheme", "true");
+
+
+        function SubmitPonto() {
+            window.location.href = "dashboard.html";
+        }
+
+        function GoToAjusteJornada() {
+            window.location.href = "ajuste_jornada.html";
+        }
+        function GetLocation() {
+            if ( navigator.geolocation ) {
+                document.getElementById('localizacao').value = 'Porto Alegre - RS';
+            } else {
+                alert('Detecção de localização não suportada!');
+            }
+        }
+
+        function HabilitarLocalizacao() {
+            document.getElementById('localizacao').removeAttribute('disabled');
+        }
+
+        function ThemeChange() {            
+            let thema = '';
+            let darkTheme = ConvertToBoolean(sessionStorage.getItem("IsDarkTheme"));
+            darkTheme = !(darkTheme);
+
+            if(darkTheme) {
+                document.body.className = 'lightTheme';
+                document.getElementById('btnTheme').textContent = 'Dark Theme';
+            }
+            else {
+                document.body.className = 'darkTheme';
+                document.getElementById('btnTheme').textContent = 'Light Theme';
+            }
+
+            sessionStorage.setItem("IsDarkTheme", darkTheme);
+        }        
+        function GetHoraData() {
+            var today = new Date();
+            var date = today.getDate() + '/0' + today.getMonth() + '/'+ today.getFullYear();
+            var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+            var dateTime = time + ' - ' + date;
+            document.getElementById("DataHoraAtual").innerHTML = dateTime.toString();
+        }
+        function Logoff() {
+            window.location.href = "../index.html";
+        }
+        function ConvertToBoolean(texto) {
+            switch(texto) {
+                case "true":
+                case "yes":
+                case "1":
+                    return true;
+                case "false":
+                case "no":
+                case "0":
+                case null:
+                    return false;
+                default:
+                    return Boolean(texto);
+            }
+        }
+    </script>
+  </head>
+  <body class="lightTheme" onload="GetHoraData()">
+    <ul style="margin-bottom: 1%;">
+        <li ><a href="dashboard.html"><strong>marelsoPonto</strong></a></li>
+        <li style="float:right"><a href="dados_pessoais.html"><strong>Meus dados</strong></a></li>
+    </ul>
+    
+    <label style="margin-left: 10vw; font-size: 30px;"><strong>Registrar ponto</strong></label>
+    <div style="margin-left: 5vw; width: 90vw; margin-top: 1%;">
+        <div class="lowBlock" style="margin-left: 5vw; height: 60%; width: 30vw;">
+            <br>   
+            <label class="label" style="width: 50px; font-size: 25px;"><strong>Marcelo Klein Sousa Junior</strong></label>        
+            <div style="font-size: 20px;">
+                <label id="Setor" class="label" style="width: 20px;  text-align: left;">Produtos</label>
+                <label id="Funcao" class="label" style="width: 20px;  text-align: left;">Estagiário</label>
+                <label id="CH" class="label" style="width: 20px; text-align: left;">30 horas</label>
+                <br>
+                <br>
+            </div>
+            
+            <label class="label" style="width: 50px; font-size: 20px;"><strong>Informações da Jornada</strong></label>        
+            <div style="font-size: 20px;">
+                <label class="label" style="width: 20px; text-align: left;">Ultimo ponto registrado:</label> <br>
+                <label class="label" id="UltimaData" style="text-align: center; font-size: 18px;">21/06/2022</label> - às <label id="UltimaHora" style="text-align: center; font-size: 18px;">15:00</label> <br><br>
+
+                <label class="label" style="width: 20px; text-align: left;">Jornada de hoje:</label> <br>
+                <label class="label" id="Modalidade" style="text-align: center; font-size: 18px;">Presencial</label> - <label id="MediaHoraDia" style="text-align: center; font-size: 18px;">06:00 horas</label> <br><br>
+                
+                <br>
+            </div>
+    
+            <label class="label" style="width: 50px; font-size: 25px; margin-left: calc(50% - 100px);"><strong id="DataHoraAtual"></strong></label> <br><br><br>  
+
+            <div style="display: inline; margin-left: calc(50% - 162px);">
+                <input class="Localizacao" onclick="GetLocation()" style="background-color: white; border:1px solid black; color: black;" type="submit" value="Detectar localização">
+                <input class="Localizacao" onclick="HabilitarLocalizacao()"style="background-color: white; border:1px solid black; color: black;" type="submit" value="Editar localizacao">
+                <input class="FormText" type="text" id="localizacao" name="localizacao" placeholder="Localizacao do dispositivo" style="width: 325px;  margin-left: calc(50% - 162px);" disabled><br>
+            </div>
+            <br>
+            <input class="submit" onclick="SubmitPonto()" style="background-color: white; border:1px solid black; color: black; width: 200px; margin-left:calc(50% - 100px);" type="submit" value="Bater ponto">
+    
+            <br>
+            <br>
+            <br>
+        </div>
+        
+        <div class="lowBlock" style="margin-left: 5vw; height: 50vh; width: 40vw;">
+            <div class="grid-container" style="margin-left: calc(50% - 300px); margin-top:2%;width: 600px; height: 72%">
+                <div class="Headder">Segunda</div>
+                <div class="Headder">Terça</div>
+                <div class="Headder">Quarta</div>
+                <div class="Headder">Quinta</div>
+                <div class="Headder">Sexta</div>
+                
+                <div class="item1">08:00</div>
+                <div class="item1">08:00</div>
+                <div class="item1">08:00</div>  
+                <div class="item1">08:00</div>
+                <div class="item1">08:00</div>
+                
+                <div class="item2">15:00</div>
+                <div class="item2">15:00</div>
+                <div class="item2">15:00</div>  
+                <div class="item2">15:00</div>
+                <div class="item2">15:00</div>  
+                
+                <div class="item3">Presencial</div>
+                <div class="item3">Remoto</div>
+                <div class="item3">Presencial</div>  
+                <div class="item3">Remoto</div>
+                <div class="item3">Remoto</div>  
+            </div> <br>
+              <input class="submit" onclick="GoToAjusteJornada()" style="background-color: white; border:1px solid black; color: black; width: 200px; margin-left:calc(50% - 100px);" type="submit" value="Solicitar alteração">
+        </div>
+    </div>
+
+    <button id="btnLogoff" class="btnLogoff rounded" onclick="Logoff()"> LogOff </button>
+    <button id="btnTheme" class="btnTheme rounded" onclick="ThemeChange()"> Dark Theme </button>
+  </body>
+</html>

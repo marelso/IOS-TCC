@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>marelso ponto</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="Style/Styles.css">
+    <meta charset="utf-8">
+    <script type="text/javascript">
+        sessionStorage.setItem("IsDarkTheme", "true");
+
+        
+        function GoTo(pagina) {
+            window.location.href = pagina;
+        }
+
+        function ThemeChange() {            
+            let thema = '';
+            let darkTheme = ConvertToBoolean(sessionStorage.getItem("IsDarkTheme"));
+            darkTheme = !(darkTheme);
+
+            if(darkTheme) {
+                document.body.className = 'lightTheme';
+                document.getElementById('btnTheme').textContent = 'Dark Theme';
+            }
+            else {
+                document.body.className = 'darkTheme';
+                document.getElementById('btnTheme').textContent = 'Light Theme';
+            }
+
+            sessionStorage.setItem("IsDarkTheme", darkTheme);
+        }        
+        function Logoff() {
+            window.location.href = "../index.html";
+        }
+        function ConvertToBoolean(texto) {
+            switch(texto) {
+                case "true":
+                case "yes":
+                case "1":
+                    return true;
+                case "false":
+                case "no":
+                case "0":
+                case null:
+                    return false;
+                default:
+                    return Boolean(texto);
+            }
+        }
+    </script>
+  </head>
+  <body class="lightTheme">
+    <ul style="margin-bottom: 1%;">
+        <li ><a href="dashboard.html"><strong>marelsoPonto</strong></a></li>
+        <li style="float:right"><a href="dados_pessoais.html"><strong>Meus dados</strong></a></li>
+    </ul>
+    
+    <label style="margin-left: 10vw; font-size: 30px;"><strong>Registros de ponto</strong></label>
+    <div class="block" style="height: 150px">
+        <br>   
+        <br>   
+        <label class="label" style="width: 50px; font-size: 20px;"><strong>Filtros:</strong></label>
+        <div>
+            <select class="custom-select" style="margin-left: 5%; display:inline">
+                <option value="0">🗓️ últimos 5 dias</option>
+                <option value="1">🗓️ últimos 7 dias</option>
+                <option value="2">🗓️ últimos 14 dias</option>
+                <option value="3">🗓️ últimos 30 dias</option>
+                <option value="4">🗓️ últimos 60 dias</option>
+                <option value="5">🗓️ últimos 90 dias</option>
+            </select>
+            <input class="submit" onclick="GoTo('abrir_solicitacao.html')" style="margin-left: 60%;text-align: center; background-color: white; border:1px solid black; color: black; width: 255px;" type="submit" value="Solicitar correção">
+            <br>            
+            <br>
+        </div>        
+    </div> <br><br>
+        
+    <input class="FormText" type="text" id="login" name="login" placeholder="🔍 Pesquisar por uma data" style="margin-left: 10vw; font-size: 20px; width: 80%;"><br>
+    
+    <div class="grid-container" style="margin-left: 10vw; margin-top:2%;width: 80%; height: 72%" onclick="GoTo('abrir_solicitacao.html')">
+        <div class="Headder">#</div>
+        <div class="Headder">Data</div>
+        <div class="Headder">Entrada e saída</div>  
+        <div class="Headder">Horas extras ou em falta</div>
+        <div class="Headder">Estado</div>
+        
+        <div class="item1">01</div>
+        <div class="item1">Quarta - 22/06/2022</div>
+        <div class="item1">08:00 - 11:30</div>
+        <div class="item1">-1:30</div>  
+        <div class="item1">⚠️ Ocorrência</div>
+        
+        <div class="item2">02</div>
+        <div class="item2">Terça - 21/06/2022</div>
+        <div class="item2">08:00 - 16:00</div>  
+        <div class="item2">+01:00</div>
+        <div class="item2">Nenhuma ocorrência</div>  
+        
+        <div class="item3">03</div>
+        <div class="item3">Segunda - 20/06/2022</div>
+        <div class="item3">08:00 - 15:00</div>  
+        <div class="item3">00:00</div>
+        <div class="item3">Nenhuma ocorrência</div>  
+    </div>
+
+
+    <button id="btnLogoff" class="btnLogoff rounded" onclick="Logoff()"> LogOff </button>
+    <button id="btnTheme" class="btnTheme rounded" onclick="ThemeChange()"> Dark Theme </button>
+  </body>
+</html>

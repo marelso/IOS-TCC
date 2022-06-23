@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>marelso ponto</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="Style/Styles.css">
+    <meta charset="utf-8">
+    <script type="text/javascript">
+        sessionStorage.setItem("IsDarkTheme", "true");
+
+        
+        function GoToPonto() {
+            window.location.href = "registrar_ponto.html";
+        }
+
+        function ThemeChange() {            
+            let thema = '';
+            let darkTheme = ConvertToBoolean(sessionStorage.getItem("IsDarkTheme"));
+            darkTheme = !(darkTheme);
+
+            if(darkTheme) {
+                document.body.className = 'lightTheme';
+                document.getElementById('btnTheme').textContent = 'Dark Theme';
+            }
+            else {
+                document.body.className = 'darkTheme';
+                document.getElementById('btnTheme').textContent = 'Light Theme';
+            }
+
+            sessionStorage.setItem("IsDarkTheme", darkTheme);
+        }        
+        function Logoff() {
+            window.location.href = "../index.html";
+        }
+        function ConvertToBoolean(texto) {
+            switch(texto) {
+                case "true":
+                case "yes":
+                case "1":
+                    return true;
+                case "false":
+                case "no":
+                case "0":
+                case null:
+                    return false;
+                default:
+                    return Boolean(texto);
+            }
+        }
+    </script>
+  </head>
+  <body class="lightTheme">
+    <ul style="margin-bottom: 1%;">
+        <li ><a href="dashboard.html"><strong>marelsoPonto</strong></a></li>
+        <li style="float:right"><a href="dados_pessoais.html"><strong>Meus dados</strong></a></li>
+    </ul>
+    
+    <label style="margin-left: 20vh; font-size: 30px;"><strong>Dashboard</strong></label>
+    <div class="block" style="height: 120px">
+        <br>   
+        <label class="label" style="width: 50px;"><strong>Saldo no banco de horas</strong></label>
+        <div>
+            <h2 class="label" style="margin-right:70%;display:inline">04:05</h2>
+            <input class="submit" onclick="GoToPonto()" style="background-color: white; border:1px solid black; color: black; width: 200px;" type="submit" value="Bater ponto">
+            <br>
+            <br>
+        </div>
+    </div>
+    <div class="center">
+        <div class="lowBlock"> 
+            <br>   
+            <label class="label">Pontualidade</label>   
+            <label class="label"><h2 class="label">78%</h2></label>
+        </div>
+        <div class="lowBlock">  
+            <br>   
+            <label class="label">Registros particulares</label>      
+            <a class="Redirect" href="registros_particulares.html">Ver registros particulares </a> 
+        </div>
+        <div class="lowBlock">        
+            <br>   
+            <label class="label">Avaliar pendencias</label>
+            <a class="Redirect" href="registros_ponto.html">Ações pendentes</a>
+        </div>
+        <div class="lowBlock">     
+            <br>     
+            <label class="label">Horas pontuais</label>  
+            <h2 class="label">12:00</h2>   
+        </div>
+        <div class="lowBlock">
+            <br>   
+            <label class="label">Horas extras</label>    
+            <h2 class="label">02:05</h2>   
+        </div>
+        <div class="lowBlock">
+            <br>   
+            <label class="label">Horas faltantes</label>     
+            <h2 class="label">00:45</h2>   
+        </div>
+    </div>
+    
+
+    <button id="btnLogoff" class="btnLogoff rounded" onclick="Logoff()"> LogOff </button>
+    <button id="btnTheme" class="btnTheme rounded" onclick="ThemeChange()"> Dark Theme </button>
+  </body>
+</html>

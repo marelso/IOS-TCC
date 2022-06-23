@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>marelso ponto</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="Style/Styles.css">
+    <meta charset="utf-8">
+    <script type="text/javascript">
+        sessionStorage.setItem("IsDarkTheme", "true");
+
+        function ThemeChange() {            
+            let thema = '';
+            let darkTheme = ConvertToBoolean(sessionStorage.getItem("IsDarkTheme"));
+            darkTheme = !(darkTheme);
+
+            if(darkTheme) {
+                document.body.className = 'lightTheme';
+                document.getElementById('btnTheme').textContent = 'Dark Theme';
+            }
+            else {
+                document.body.className = 'darkTheme';
+                document.getElementById('btnTheme').textContent = 'Light Theme';
+            }
+
+            sessionStorage.setItem("IsDarkTheme", darkTheme);
+        }        
+        function Logoff() {
+            window.location.href = "../index.html";
+        }
+        function ConvertToBoolean(texto) {
+            switch(texto) {
+                case "true":
+                case "yes":
+                case "1":
+                    return true;
+                case "false":
+                case "no":
+                case "0":
+                case null:
+                    return false;
+                default:
+                    return Boolean(texto);
+            }
+        }
+    </script>
+  </head>
+  <body class="lightTheme">
+    <ul style="margin-bottom: 1%;">
+        <li ><a href="dashboard.html"><strong>marelsoPonto</strong></a></li>
+        <li style="float:right"><a href="dados_pessoais.html"><strong>Meus dados</strong></a></li>
+    </ul>
+    
+    <label style="margin-left: 38vh; font-size: 30px;"><strong>Dados registrados</strong></label>
+    <div class="block" style="margin-left: 40vh; height: 60%; width: 60vw;">
+        <br>   
+        <label class="label" style="width: 50px; font-size: 25px;"><strong>Marcelo Klein Sousa Junior</strong></label>        
+        <div style="font-size: 20px;">
+            <label id="Setor" class="label" style="width: 20px;  text-align: left;">Produtos</label> <label style="text-align: center;">-</label>
+            <label id="Funcao" class="label" style="width: 20px;  text-align: left;">Estagiário</label> <label style="text-align: center;">-</label>
+            <label id="CH" class="label" style="width: 20px; text-align: left;">30 horas</label> <label style="text-align: center;">-</label>
+            <label id="Ativo" class="label" style="width: 20px; text-align: left;">De férias 🥳</label>
+            <br>
+            <br>
+        </div>
+        
+        <label class="label" style="width: 50px; font-size: 25px;"><strong>Informações pessoais</strong></label>        
+        <div style="font-size: 20px;">
+            <label id="CPF" class="label" style="width: 20px; text-align: left;">CPF:</label> <label style="text-align: center;">000.000.000-00</label> <br>
+            <label id="RG" class="label" style="width: 20px; text-align: left;">RG</label> <label style="text-align: center;">0000000000</label> <br>
+            <label id="PIS" class="label" style="width: 20px; text-align: left;">PIS</label> <label style="text-align: center;">00000000000</label> <br>
+            <br>
+            <br>
+        </div>
+
+        <label class="label" style="width: 50px; font-size: 25px;"><strong>Contatos</strong></label>        
+        <div style="font-size: 20px;">
+            <label id="Email" class="label" style="width: 20px; font-size: 20px; text-align: left;">Email:</label> <label style="text-align: center;">email@gmail.com</label> <br>
+            <label id="EmailAlt" class="label" style="width: 20px; font-size: 20px; text-align: left;">Email alternativo:</label> <label style="text-align: center;">emailAlternativo@gmail.com</label> <br>
+            <label id="Telefone" class="label" style="width: 20px; font-size: 20px; text-align: left;">Telefone:</label> <label style="text-align: center;">51 90000-0000</label><br>
+            <br>
+            <br>
+        </div>
+
+        <label class="label" style="width: 50px; font-size: 25px;"><strong>Localização</strong></label>        
+        <div style="font-size: 20px;">
+            <label id="PAIS" class="label" style="width: 20px; text-align: left;">Pais</label> <label style="text-align: center;">Brasil</label> <br>
+            <label id="Estado" class="label" style="width: 20px; text-align: left;">Estado:</label> <label style="text-align: center;">RS</label> <br>
+            <label id="Cidade" class="label" style="width: 20px; text-align: left;">Cidade</label> <label style="text-align: center;">Porto Alegre</label> <br>
+            <label id="Endereco" class="label" style="width: 20px; text-align: left;">Endereço</label> <label style="text-align: center;">Av. Avenida, Bairro, 1010</label> <br>
+            <br>
+            <br>
+        </div>
+    </div>
+    
+    <button id="btnLogoff" class="btnLogoff rounded" onclick="Logoff()"> LogOff </button>
+    <button id="btnTheme" class="btnTheme rounded" onclick="ThemeChange()"> Dark Theme </button>
+  </body>
+</html>
